@@ -1,0 +1,3 @@
+Se você fizer mudanças no código, rode o comando na pasta raiz do projeto.
+If you are going to make changes in the code, run the following command in the project root directory.
+> npm run watch
