@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:production": "export NODE_ENV=production; node server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify js/todo.js -o bundle.js -t [ babelify --presets [ es2015 react ] --plugins [transform-decorators transform-decorators-legacy transform-class-properties react-html-attrs transform-es2015-destructuring transform-object-rest-spread] ]"
+    "watch": "watchify ui/js/todo.js -o ui/bundle.js -t [ babelify --presets [ es2015 react ] --plugins [transform-decorators transform-decorators-legacy transform-class-properties react-html-attrs transform-es2015-destructuring transform-object-rest-spread] ]"
   },
   "dependencies": {
     "axios": "^0.15.0",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.17.0",
-    "babel-loader": "^6.2.5",
     "babel-plugin-react-html-attrs": "^2.0.0",
     "babel-plugin-syntax-decorators": "^6.13.0",
     "babel-plugin-transform-class-properties": "^6.16.0",
@@ -23,7 +24,11 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babelify": "^7.3.0",
+    "body-parser": "^1.15.2",
     "browserify": "*",
+    "express": "*",
+    "mongodb": "^2.2.10",
+    "mongojs": "^2.4.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",

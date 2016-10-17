@@ -5,7 +5,7 @@ import * as TodoActions from '../actions/todoActions';
 class List extends React.Component{
   addTask(e){
     var title = document.querySelector('[name=title]');
-    this.props.dispatch({type:'ADD_TASK', payload: {title: title.value}});
+    TodoActions.createTask(this.props.dispatch,{title: title.value});
     title.value = '';
   }
 
