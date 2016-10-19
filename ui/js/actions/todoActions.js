@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export function loadTasks(dispatch){
-  axios.get('http://localhost:8000/api/tasks')
+  axios.get('http://localhost:8080/api/tasks')
   .then(function(response){
     dispatch({type: 'LOAD_TASKS', payload: response.data});
   })
@@ -9,7 +9,7 @@ export function loadTasks(dispatch){
 };
 
 export function createTask(dispatch,data){
-  axios.post('http://localhost:8000/api/tasks',data)
+  axios.post('http://localhost:8080/api/tasks',data)
   .then(function(response){
     console.log(response)
     dispatch({type: 'ADD_TASK', payload: response.data});

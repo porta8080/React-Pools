@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as TodoActions from '../actions/todoActions';
+import PoolComponent from './Pool';
 
 class List extends React.Component{
   addTask(e){
@@ -10,17 +11,17 @@ class List extends React.Component{
   }
 
   render(){
-    const mappedTasks = this.props.tasks.map(function(task){
+    const mappedPools = this.props.pools.map(function(pool){
       return (
-        <li key={task.title}>{task.title}</li>
+        <PoolComponent key={pool._id} item={pool} />
       );
     });
 
     return (
       <div>
-        <ul>
-          {mappedTasks}
-        </ul>
+        <div class='pools list'>
+          {mappedPools}
+        </div>
         <input name='title' />
         <button onClick={this.addTask.bind(this)}>Add</button>
       </div>
@@ -30,7 +31,7 @@ class List extends React.Component{
 
 const mapStateToProps = function(state,ownProps){
   return {
-    tasks: state.tasks
+    pools: state.pools
   }
 }
 
