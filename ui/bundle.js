@@ -34085,13 +34085,23 @@ var Pool = function (_React$Component) {
       return Math.round(intention.votes.length / total * 100 * 100) / 100;
     }
   }, {
+    key: 'componentDidMount',
+    value: function componentDidMount(e) {
+      var pool_element = jQuery(this.refs.pool);
+      var intentions = pool_element.find('.intentions');
+      intentions.hide();
+      pool_element.find('.title').click(function () {
+        intentions.slideToggle();
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var mappedIntentions = this.props.item.intentions.map(function (intention) {
         var ratio = this.voteRatio(intention);
         return _react2.default.createElement(
           'li',
-          { key: intention._id },
+          { key: intention._id, className: 'intention' },
           _react2.default.createElement(
             'div',
             { className: 'progress' },
@@ -34109,10 +34119,10 @@ var Pool = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'pool' },
+        { className: 'pool', ref: 'pool' },
         _react2.default.createElement(
           'h3',
-          null,
+          { className: 'title' },
           this.props.item.title
         ),
         _react2.default.createElement(
@@ -34122,7 +34132,7 @@ var Pool = function (_React$Component) {
         ),
         _react2.default.createElement(
           'ul',
-          null,
+          { className: 'intentions' },
           mappedIntentions
         )
       );

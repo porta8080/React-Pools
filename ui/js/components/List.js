@@ -10,6 +10,8 @@ class List extends React.Component{
     title.value = '';
   }
 
+
+
   render(){
     const mappedPools = this.props.pools.map(function(pool){
       return (

@@ -12,11 +12,20 @@ class Pool extends React.Component{
     return Math.round(((intention.votes.length / total) * 100) * 100) / 100 ;
   }
 
+  componentDidMount(e){
+    var pool_element = jQuery(this.refs.pool);
+    var intentions = pool_element.find('.intentions');
+    intentions.hide();
+    pool_element.find('.title').click(function(){
+      intentions.slideToggle();
+    });
+  }
+
   render(){
     const mappedIntentions = this.props.item.intentions.map(function(intention){
       var ratio = this.voteRatio(intention);
       return (
-          <li key={intention._id}>
+          <li key={intention._id} class='intention'>
           <div className="progress">
             <div className="progress-bar" role="progressbar" aria-valuenow="{ratio}" aria-valuemin="0" aria-valuemax="100" style={{width: ratio+'%'}}>
               {intention.title}: {intention.votes.length} votos
@@ -27,10 +36,10 @@ class Pool extends React.Component{
     },this);
 
     return (
-      <div class='pool'>
-        <h3>{this.props.item.title}</h3>
+      <div class='pool' ref="pool">
+        <h3 class='title'>{this.props.item.title}</h3>
         <div>{this.props.item.description}</div>
-        <ul>
+        <ul class='intentions'>
           {mappedIntentions}
         </ul>
       </div>
