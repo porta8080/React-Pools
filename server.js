@@ -9,44 +9,56 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/',express.static(path.join(__dirname,'ui')));
 
+app.get('/seed',function(req,res){
+  db.collection('pools').remove({},function(){
+    db.collection('pools').insert(
+      [
+        {
+          title: 'Pool #1',description:'Lorem ipsum sit amment dolor conseptur adisplicin',
+          intentions:[
+            {
+              title:'Opção #1',votes:
+              [
+                {uid:'123456789'},
+                {uid:'223456789'}
+              ]
+            },
+            {
+              title:'Opção #2',votes:
+              [
+                {uid:'123456700'}
+              ]
+            }
+          ]
+        },
+        {
+          title: 'Pool #2',description:'Lorem ipsum sit amment dolor conseptur adisplicin',
+          intentions:[
+            {
+              title:'Opção #1',votes:
+              [
+                {uid:'123444789'},
+                {uid:'223422789'}
+              ]
+            },
+            {
+              title:'Opção #2',votes:
+              [
+                {uid:'333456789'}
+              ]
+            }
+          ]
+        }
+      ],function(err,data){
+        res.json(data);
+      });
+
+  });
+});
+
 app.get('/api/pools',function(req,res){
-  // all
-  var votes_i1 = [
-    {_id: 1,uid:'123456789'},
-    {_id: 2,uid:'223456789'}
-  ];
-
-  var votes_i2 = [
-    {_id: 3,uid:'123456700'}
-  ];
-
-  var votes_i3 = [
-    {_id: 4,uid:'123444789'},
-    {_id: 5,uid:'223422789'}
-  ];
-
-  var votes_i4 = [
-    {_id: 6,uid:'333456789'}
-  ];
-
   db.collection('pools').find({},function(err,data){
-    res.json([
-      {
-        _id:1,title: 'Pool #1',description:'Lorem ipsum sit amment dolor conseptur adisplicin',
-        intentions:[
-          {_id: 1,title:'Opção #1',votes: votes_i1},
-          {_id: 2,title:'Opção #2',votes: votes_i2}
-        ],
-        votes: votes_i1.concat(votes_i2)
-      },{
-        _id:2,title: 'Pool #2',description:'Lorem ipsum sit amment dolor conseptur adisplicin',
-        intentions:[
-          {_id: 3,title:'Opção #1',votes: votes_i3},
-          {_id: 4,title:'Opção #2',votes: votes_i4}
-        ],
-        votes: votes_i3.concat(votes_i4)
-      }
-    ]);
+    res.json(data);
   });
 });
 

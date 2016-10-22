@@ -34185,10 +34185,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 window.jQuery = require('jquery');
 jQuery.noConflict();
-// import todoReducer from './reducers/todoReducer';
 
-// import { getUsers, loadTasks } from './actions/todoActions';
-
+Object.defineProperties(Array.prototype, {
+  last: { value: function value() {
+      return this[this.length - 1];
+    } },
+  first: { value: function value() {
+      return this[0];
+    } }
+});
 
 var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default);
 var store = (0, _redux.createStore)(_poolReducer2.default, middleware);
