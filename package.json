@@ -7,7 +7,7 @@
     "start:production": "export NODE_ENV=production; node server.js",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha ./tests/",
     "watch": "watchify ui/js/pool.js -o ui/bundle.js -t [ babelify --presets [ es2015 react ] --plugins [transform-decorators transform-decorators-legacy transform-class-properties react-html-attrs transform-es2015-destructuring transform-object-rest-spread] ]",
     "watch:server": "npm run server | npm run watch"
   },
@@ -43,5 +43,9 @@
     "watchify": "*"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  }
 }

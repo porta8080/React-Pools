@@ -1,6 +1,8 @@
 var express = require('express');
 var path = require('path');
+var config = require('./config');
 var db = require('./db');
+var Validator = require('./utils/Validator');
 var bodyParser = require('body-parser');
 var app = express();
 
@@ -63,12 +65,11 @@ app.get('/api/pools',function(req,res){
 });
 
 app.post('/api/pools',function(req,res){
-  // create
   db.collection('pools').insert(req.body,function(err,data){
     res.json(data);
   });
 });
 
-var server = app.listen(8080,function(){
+var server = app.listen(config.server.port,function(){
   console.log(server.address().port);
 });
